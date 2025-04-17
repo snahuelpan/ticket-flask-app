@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Detalles del Ticket: {{ ticket.title }}</h2>
+
+    <p><strong>Descripción:</strong> {{ ticket.description }}</p>
+    <p><strong>Prioridad:</strong> {{ ticket.priority }}</p>
+    <p><strong>Categoría:</strong> {{ ticket.category }}</p>
+    <p><strong>Estado:</strong> {{ ticket.status }}</p>
+    <p><strong>Fecha de Vencimiento:</strong> {{ ticket.due_date.strftime('%d/%m/%Y') }}</p>
+
+    {% if ticket.assigned_to %}
+      <p><strong>Asignado a:</strong> {{ ticket.assigned_to.name }} {{ ticket.assigned_to.lastname }}</p>
+    {% else %}
+      <p><strong>Asignado a:</strong> No asignado</p>
+    {% endif %}
+
+    <h3>Comentarios</h3>
+    <ul class="list-group">
+      {% for comment in ticket.comments %}
+        <li class="list-group-item">
+          <p>{{ comment.content }}</p>
+          <small>Por {{ comment.user.name }} {{ comment.user.lastname }} el {{ comment.created_at.strftime('%d/%m/%Y') }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h3>Añadir un Comentario</h3>
+    <form method="POST">
+      {{ comment_form.hidden_tag() }}
+      <div class="form-group">
+        <label for="content">Comentario</label>
+        {{ comment_form.content(class="form-control", id="content", placeholder="Escribe tu comentario...") }}
+      </div>
+      <div class="form-group">
+        <label for="is_internal">Es comentario interno</label>
+        {{ comment_form.is_internal(class="form-check-input", id="is_internal") }}
+      </div>
+      <button type="submit" class="btn btn-primary">Añadir Comentario</button>
+    </form>
+
+    <hr>
+
+    <h3>Asignar Ticket</h3>
+    <form method="POST">
+      {{ assign_form.hidden_tag() }}
+      <div class="form-group">
+        <label for="assigned_to">Asignar a</label>
+        {{ assign_form.assigned_to(class="form-control", id="assigned_to") }}
+      </div>
+      <div class="form-group">
+        <label for="status">Estado</label>
+        {{ assign_form.status(class="form-control", id="status") }}
+      </div>
+      <button type="submit" class="btn btn-success">Asignar Ticket</button>
+    </form>
+
+  </div>
+{% endblock %}

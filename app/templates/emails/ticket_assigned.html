@@ -1,0 +1,15 @@
+<p>Hola {{ ticket.assigned_to.name }},</p>
+
+<p>Se te ha asignado el siguiente ticket:</p>
+
+<table>
+    <tr><th>Ticket #</th><td>{{ ticket.id }}</td></tr>
+    <tr><th>Título</th><td>{{ ticket.title }}</td></tr>
+    <tr><th>Prioridad</th><td>{{ ticket.priority|capitalize }}</td></tr>
+    <tr><th>Estado</th><td>{{ ticket.status|capitalize }}</td></tr>
+</table>
+
+<p>Por favor revisa el ticket y actualiza su estado cuando sea necesario:<br>
+<a href="{{ url_for('ticket.detail', ticket_id=ticket.id, _external=True) }}">Ver Ticket</a></p>
+
+<p>Gracias,<br>El equipo de soporte</p>

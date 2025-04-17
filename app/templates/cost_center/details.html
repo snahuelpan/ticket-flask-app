@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Detalles del Cliente: {{ cost_center.name }}</h2>
+
+        <ul class="list-group">
+            <li class="list-group-item"><strong>UUID:</strong> {{ cost_center.uuid }}</li>
+            <li class="list-group-item"><strong>CC:</strong> {{ cost_center.id_number }}</li>
+            <li class="list-group-item"><strong>Nombre:</strong> {{ cost_center.name }}</li>
+            <li class="list-group-item"><strong>Gerencia:</strong> {{ cost_center.management }}</li>
+            <li class="list-group-item"><strong>Gerente:</strong> {{ cost_center.manager }}</li>
+            <li class="list-group-item"><strong>Email Gerente:</strong> {{ cost_center.manager_email }}</li>
+            <li class="list-group-item"><strong>Administrador:</strong> {{ cost_center.administrator }}</li>
+            <li class="list-group-item"><strong>Email Administrador:</strong> {{ cost_center.administrator_email }}</li>
+            <li class="list-group-item"><strong>Celular Administrador:</strong> {{ cost_center.administrator_cellphone }}</li>
+            <li class="list-group-item"><strong>Active:</strong> {{ cost_center.active }}</li>
+        </ul>
+
+        <a href="{{ url_for('cost_center.list_cost_center') }}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+{% endblock %}

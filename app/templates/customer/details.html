@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Detalles del Cliente: {{ customer.name }}</h2>
+
+        <ul class="list-group">
+            <li class="list-group-item"><strong>UUID:</strong> {{ customer.uuid }}</li>
+            <li class="list-group-item"><strong>Rut:</strong> {{ customer.id_number }}</li>
+            <li class="list-group-item"><strong>Nombre:</strong> {{ customer.name }}</li>
+            <li class="list-group-item"><strong>Apellido:</strong> {{ customer.lastname }}</li>
+            <li class="list-group-item"><strong>Email:</strong> {{ customer.email }}</li>
+            <li class="list-group-item"><strong>Cargo:</strong> {{ customer.job_title }}</li>
+            <li class="list-group-item"><strong>Active:</strong> {{ customer.active }}</li>
+        </ul>
+
+        <a href="{{ url_for('customer.list_customers') }}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Lista de Clientes</h2>
+        <a href="{{ url_for('cost_center.create_cost_center') }}" class="btn btn-primary mb-3">Crear Nuevo Cliente</a>
+        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#uploadModal">Cargar Lista de Usuarios</button>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>CC</th>
+                    <th>Nombre</th>
+                    <th>Gerencia</th>
+                    <th>Administrador</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cost_center in cost_centers %}
+                    <tr>
+                        <td>{{ cost_center.id_number }}</td>
+                        <td>{{ cost_center.name }}</td>
+                        <td>{{ cost_center.management }}</td>
+                        <td>{{ cost_center.administrator }}</td>
+                        <td>
+                            <a href="{{ url_for('cost_center.cost_center_details', cost_center_id=cost_center.id) }}" class="btn btn-info">Ver Detalles</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        
+    </div>
+<!-- Modal para subir Excel -->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form method="POST" action="{{ url_for('cost_center.upload_cost_centers') }}" enctype="multipart/form-data">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="uploadModalLabel">Subir Archivo Excel de Clientes</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+              <div class="mb-3">
+                  <label for="archivo" class="form-label">Selecciona un archivo (.xlsx)</label>
+                  <input type="file" class="form-control" name="archivo" id="archivo" accept=".xlsx" required>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Subir</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endblock %}

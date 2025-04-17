@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Lista de Tickets</h2>
+
+    <form method="GET" class="mb-4">
+      <div class="form-group">
+        <label for="status">Filtrar por Estado</label>
+        <select name="status" id="status" class="form-control">
+          <option value="all" {% if status_filter == 'all' %}selected{% endif %}>Todos</option>
+          <option value="open" {% if status_filter == 'open' %}selected{% endif %}>Abiertos</option>
+          <option value="my_tickets" {% if status_filter == 'my_tickets' %}selected{% endif %}>Mis Tickets</option>
+          <option value="created_by_me" {% if status_filter == 'created_by_me' %}selected{% endif %}>Creado por mí</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
+
+    <ul class="list-group">
+      {% for ticket in tickets %}
+        <li class="list-group-item">
+          <h5><a href="{{ url_for('ticket.detail', ticket_id=ticket.id) }}">{{ ticket.title }}</a></h5>
+          <p>{{ ticket.description }}</p>
+          <small><strong>Estado:</strong> {{ ticket.status }} | <strong>Prioridad:</strong> {{ ticket.priority }} | <strong>Vencimiento:</strong> {{ ticket.due_date.strftime('%d/%m/%Y') }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

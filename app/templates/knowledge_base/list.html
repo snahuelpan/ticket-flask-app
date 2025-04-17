@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Base de Conocimiento</h2>
+        
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Categoría</th>
+                    <th>Palabras clave</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.id }}</td>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.category }}</td>
+                        <td>{{ article.keywords }}</td>
+                        <td>{{ 'Publicado' if article.is_published else 'No publicado' }}</td>
+                        <td>
+                            <a href="{{ url_for('knowledge_base.article_details', article_id=article.id) }}" class="btn btn-info">Ver Detalles</a>
+                            <a href="{{ url_for('knowledge_base.edit_article', article_id=article.id) }}" class="btn btn-warning">Editar</a>
+                            <form method="POST" action="{{ url_for('knowledge_base.delete_article', article_id=article.id) }}" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ url_for('knowledge_base.create_article') }}" class="btn btn-primary">Crear Nuevo Artículo</a>
+    </div>
+{% endblock %}

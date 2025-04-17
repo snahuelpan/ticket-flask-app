@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Lista de Usuarios</h2>
+        
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>UUID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.uuid }}</td>
+                        <td>{{ user.name }} {{ user.lastname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <a href="{{ url_for('users.user_details', user_id=user.id) }}" class="btn btn-info">Ver Detalles</a>
+                            <a href="{{ url_for('users.edit_user', user_id=user.id) }}" class="btn btn-warning">Editar</a>
+                            <form method="POST" action="{{ url_for('users.delete_user', user_id=user.id) }}" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ url_for('users.create_user') }}" class="btn btn-primary">Crear Nuevo Usuario</a>
+    </div>
+{% endblock %}

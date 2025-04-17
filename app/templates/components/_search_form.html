@@ -1,0 +1,6 @@
+<form method="get" action="{{ url_for(request.endpoint) }}" class="d-flex">
+    <input type="text" name="search_query" class="form-control" placeholder="Buscar..." value="{{ request.args.get('search_query', '') }}">
+    <button type="submit" class="btn btn-primary ms-2">
+        <i class="bi bi-search"></i> Buscar
+    </button>
+</form>

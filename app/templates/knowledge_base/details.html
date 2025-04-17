@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>{{ article.title }}</h2>
+
+        <p><strong>Categoría:</strong> {{ article.category }}</p>
+        <p><strong>Palabras clave:</strong> {{ article.keywords }}</p>
+        <p><strong>Vistas:</strong> {{ article.views }}</p>
+        <p><strong>Estado:</strong> {{ 'Publicado' if article.is_published else 'No publicado' }}</p>
+
+        <div class="content">
+            <p>{{ article.content }}</p>
+        </div>
+
+        <a href="{{ url_for('knowledge_base.list_articles') }}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+{% endblock %}

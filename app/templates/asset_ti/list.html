@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Lista de Assets</h2>
+        
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Modelo</th>
+                    <th>Número de Serie</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for asset in assets %}
+                    <tr>
+                        <td>{{ asset.id }}</td>
+                        <td>{{ asset.name }}</td>
+                        <td>{{ asset.asset_type }}</td>
+                        <td>{{ asset.model }}</td>
+                        <td>{{ asset.serial_number }}</td>
+                        <td>{{ asset.status }}</td>
+                        <td>
+                            <a href="{{ url_for('asset_ti.asset_details', asset_id=asset.id) }}" class="btn btn-info">Ver Detalles</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

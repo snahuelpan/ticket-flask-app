@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f4;
+    margin: 0;
+    padding: 0;
+
+
+
+    min-height: 100vh;
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    border: 1px solid #2c6db8;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #d9d9d9;
+}
+
+.login-container {
+
+    background-color: white;
+    border-radius: 5px;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.divider {
+    border-bottom: 1px solid #e0e0e0;
+    margin: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: normal;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: 14px;
+}
+
+.forgot-password a {
+    color: #2c6db8;
+    text-decoration: none;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.checkbox-container input {
+    margin-right: 10px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f5c85c;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #f0b93c;
+}
+
+.system-info {
+    text-align: right;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.footer {
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+    margin: 20px 0;
+}
+
+.footer a {
+    color: #2c6db8;
+    text-decoration: none;
+}
+
+/* Estilo para el logo GLPI */
+.glpi-tag {
+    background-color: #d9d9d9;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}

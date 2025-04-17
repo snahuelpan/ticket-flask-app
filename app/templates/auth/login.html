@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#">
+            <img src="https://intranet.guinezapp.cl/img/logo_letra.png" height="50">
+            <b>Guiñez</b> Ingenieria
+        </a>
+    </div>
+
+
+    <div class="card card-outline card-primary">
+
+
+        <div class="card-header ">
+            <h3 class="card-title float-none text-center">
+                Autenticarse para iniciar sesión </h3>
+        </div>
+
+
+        <div class="card-body login-card-body ">
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                {{ form.hidden_tag() }}
+
+
+                <div class="input-group mb-3">
+                    {{ form.email(class="form-control", placeholder="Ingresa tu correo electrónico") }}
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-id-card "></span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="input-group mb-3">
+                    {{ form.password(class="form-control", placeholder="Ingresa tu contraseña") }}
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock "></span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            {{ form.remember_me() }} Recordarme
+                        </label>
+                    </div>
+
+                    <div class="col-12">
+                        <button type=submit class="btn btn-block btn-flat btn-primary">
+                            <span class="fas fa-sign-in-alt"></span>
+                            Acceder
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="card-footer d-none">
+
+            <p class="my-0">
+                <a href="https://intranet.guinezapp.cl/password/reset">
+                    Olvidé mi contraseña
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% if get_flashed_messages() %}
+<div class="mt-3">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

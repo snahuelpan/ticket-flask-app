@@ -1,0 +1,16 @@
+<p>Hola {{ ticket.requester.name }},</p>
+
+<p>Se ha creado un nuevo ticket con los siguientes detalles:</p>
+
+<table>
+    <tr><th>Ticket #</th><td>{{ ticket.id }}</td></tr>
+    <tr><th>Título</th><td>{{ ticket.title }}</td></tr>
+    <tr><th>Descripción</th><td>{{ ticket.description }}</td></tr>
+    <tr><th>Prioridad</th><td>{{ ticket.priority|capitalize }}</td></tr>
+    <tr><th>Estado</th><td>{{ ticket.status|capitalize }}</td></tr>
+</table>
+
+<p>Puedes ver el ticket en el siguiente enlace:<br>
+<a href="{{ url_for('ticket.detail', ticket_id=ticket.id, _external=True) }}">Ver Ticket</a></p>
+
+<p>Gracias,<br>El equipo de soporte</p>

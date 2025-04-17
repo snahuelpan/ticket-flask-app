@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-section">
+        <h2>Software</h2>
+        <div class="dashboard-item">
+            <span class="number">{{ stats.software }}</span>
+            <span class="label">Computadoras</span>
+        </div>
+        <div class="dashboard-item">
+            <span class="number">{{ stats.licenses }}</span>
+            <span class="label">Licencias</span>
+        </div>
+        <div class="dashboard-item">
+            <span class="number">{{ stats.monitors }}</span>
+            <span class="label">Monitores</span>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Equipos</h2>
+        <div class="dashboard-item">
+            <span class="number">{{ stats.network_equipment }}</span>
+            <span class="label">Equipos de Red</span>
+        </div>
+        <div class="dashboard-item">
+            <span class="number">{{ stats.printers }}</span>
+            <span class="label">Impresoras</span>
+        </div>
+    </div>
+
+    <!-- Más secciones según tu captura -->
+</div>
+{% endblock %}

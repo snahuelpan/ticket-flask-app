@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Crear Nuevo Asset</h2>
+
+        <form method="POST" action="{{ url_for('asset_ti.create_asset') }}">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                {{ form.name(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="asset_type">Tipo de Asset:</label>
+                {{ form.asset_type(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="model">Modelo:</label>
+                {{ form.model(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="serial_number">Número de Serie:</label>
+                {{ form.serial_number(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="purchase_date">Fecha de Compra:</label>
+                {{ form.purchase_date(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="warranty_expiration">Fecha de Expiración de Garantía:</label>
+                {{ form.warranty_expiration(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="status">Estado:</label>
+                {{ form.status(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="location">Ubicación:</label>
+                {{ form.location(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notas:</label>
+                {{ form.notes(class="form-control") }}
+            </div>
+
+            <!-- Campos para Software (solo si el tipo de asset es 'software') -->
+            {% if form.asset_type.data == 'software' %}
+                <div class="form-group">
+                    <label for="license_key">Clave de Licencia:</label>
+                    {{ form.license_key(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    <label for="license_expiration">Fecha de Expiración de Licencia:</label>
+                    {{ form.license_expiration(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    <label for="version">Versión:</label>
+                    {{ form.version(class="form-control") }}
+                </div>
+            {% endif %}
+            
+            <button type="submit" class="btn btn-primary">Crear Asset</button>
+        </form>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert alert-dismissible">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+{% endblock %}

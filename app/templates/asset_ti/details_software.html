@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Detalles del Software: {{ asset.name }}</h2>
+
+        <ul class="list-group">
+            <li class="list-group-item"><strong>ID:</strong> {{ asset.id }}</li>
+            <li class="list-group-item"><strong>Tipo:</strong> {{ asset.asset_type }}</li>
+            <li class="list-group-item"><strong>Modelo:</strong> {{ asset.model }}</li>
+            <li class="list-group-item"><strong>Número de Serie:</strong> {{ asset.serial_number }}</li>
+            <li class="list-group-item"><strong>Fecha de Compra:</strong> {{ asset.purchase_date }}</li>
+            <li class="list-group-item"><strong>Fecha de Expiración de Garantía:</strong> {{ asset.warranty_expiration }}</li>
+            <li class="list-group-item"><strong>Estado:</strong> {{ asset.status }}</li>
+            <li class="list-group-item"><strong>Ubicación:</strong> {{ asset.location }}</li>
+            <li class="list-group-item"><strong>Notas:</strong> {{ asset.notes }}</li>
+            <li class="list-group-item"><strong>Clave de Licencia:</strong> {{ asset.license_key }}</li>
+            <li class="list-group-item"><strong>Fecha de Expiración de Licencia:</strong> {{ asset.license_expiration }}</li>
+            <li class="list-group-item"><strong>Versión:</strong> {{ asset.version }}</li>
+        </ul>
+
+        <a href="{{ url_for('asset_ti.list_assets') }}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+{% endblock %}

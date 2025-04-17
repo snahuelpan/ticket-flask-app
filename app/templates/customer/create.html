@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Crear Nuevo Cliente</h2>
+
+        <form method="POST" action="{{ url_for('customer.create_customer') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.name.label(class="form-control-label") }}
+                {{ form.name(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {{ form.email(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.phone.label(class="form-control-label") }}
+                {{ form.phone(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.address.label(class="form-control-label") }}
+                {{ form.address(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Crear Cliente</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
