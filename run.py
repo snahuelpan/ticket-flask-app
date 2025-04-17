@@ -22,6 +22,21 @@ def initdb_command():
     print(db)
     db.drop_all()
     db.create_all()
+    # Crear un usuario de prueba
+    test_user = User(
+        email='soporteti@local.com',
+        password_hash=generate_password_hash('ADMIN'), ##CAMBIAR CONTRASEÑA
+        name="Departamento",
+        lastname="Informatica",
+        uuid=str(uuid.uuid4())
+    )
+    
+    # Agregar el usuario de prueba a la base de datos
+    db.session.add(test_user)
+    db.session.commit()
+
+    print('Base de datos inicializada exitosamente.')
+    print(f'Usuario de prueba creado: {test_user.email}')
 
 if __name__ == '__main__':
     app.run(port=3000)

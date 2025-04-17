@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app import db
-from app.models import Ticket, TicketComment, User
+from app.models import Ticket, TicketComment, User, Customer
 from app.utils.ticket_forms import CreateTicketForm, AssignTicketForm, TicketCommentForm
 from app.services.notification_service import (
     notify_ticket_created,
@@ -11,6 +11,35 @@ from app.services.notification_service import (
 
 bp = Blueprint('ticket', __name__, url_prefix='/tickets')
 
+def generar_numero_ticket():
+    # Obtener el último ticket
+    ultimo_ticket = Ticket.query.order_by(Ticket.id.desc()).first()
+
+    # Si no hay tickets, el ID será 1
+    if ultimo_ticket is None:
+        return f"INC-GI-1"
+    
+    # Si hay tickets, incrementamos el último ID en 1
+    nuevo_id = ultimo_ticket.id + 1
+
+    # Generar el número de ticket en el formato requerido
+    return f"INC-GI-{nuevo_id}"
+
+def listado_trabajadores():
+    # Consultar todos los clientes de la base de datos
+    customers = Customer.query.all()
+
+    # Crear una lista de tuplas para el campo SelectField
+    customer_choices = [(customer.id, f"{customer.name} {customer.lastname}") for customer in customers]
+
+    return customer_choices
+    
+
+@bp.route('/dashboard', methods=['GET', 'POST'])
+@login_required
+def dashboard():
+    return render_template('tickets/dashboard.html' )
+
 @bp.route('/create', methods=['GET', 'POST'])
 @login_required
 def create():
@@ -18,6 +47,7 @@ def create():
     if form.validate_on_submit():
         ticket = Ticket(
             title=form.title.data,
+            customer=form.customer.data,
             description=form.description.data,
             priority=form.priority.data,
             category=form.category.data,
@@ -29,6 +59,10 @@ def create():
         #notify_ticket_created(ticket)  # <-- en desarrollo
         flash('Ticket creado exitosamente!', 'success')
         return redirect(url_for('ticket.detail', ticket_id=ticket.id))
+    ticket_number = generar_numero_ticket()  # Este valor puede ser generado dinámicamente
+    customer_choices = listado_trabajadores()
+    form.title.data = ticket_number
+    form.customer.choices = customer_choices
     return render_template('tickets/create.html', form=form)
 
 @bp.route('/<int:ticket_id>', methods=['GET', 'POST'])

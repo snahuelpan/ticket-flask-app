@@ -22,7 +22,7 @@ def login():
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next')
-            flash('Has iniciado sesión correctamente.', 'success')
+            #flash('Has iniciado sesión correctamente.', 'success')
             return redirect(next_page or url_for('home.index'))
         flash('Email o contraseña incorrectos.', 'danger')
     return render_template('auth/login.html', form=form)

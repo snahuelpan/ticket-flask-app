@@ -3,8 +3,11 @@
 {% block content %}
     <div class="container">
         <h2>Lista de Clientes</h2>
-        <a href="{{ url_for('cost_center.create_cost_center') }}" class="btn btn-primary mb-3">Crear Nuevo Cliente</a>
-        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#uploadModal">Cargar Lista de Usuarios</button>
+        <a href="{{ url_for('cost_center.create_cost_center') }}" class="btn btn-primary mb-3">Crear Nuevo Centro de costo</a>
+        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#uploadModal">Cargar Excel</button>
+        <a href="{{ url_for('cost_center.download_cost_centers_excel') }}" class="btn btn-outline-primary mb-3">Descargar Excel</a>
+        <a href="{{ url_for('static', filename='files/centrocosto.xlsx') }}" class="btn btn-outline-secondary mb-3">Descargar Plantilla Excel
+        </a>
         <table class="table table-bordered">
             <thead>
                 <tr>

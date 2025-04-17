@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import Blueprint, render_template, redirect, url_for, flash, request, send_file
 from flask_login import login_required
 from app import db
 from app.models import CostCenter
@@ -90,4 +90,34 @@ def upload_cost_centers():
     except Exception as e:
             flash(f'Error al procesar el archivo: {e}', 'danger')
     return redirect(url_for('cost_center.list_cost_center'))
+
+@bp.route('/cost_centers/download', methods=['GET'])
+def download_cost_centers_excel():
+    cost_centers = CostCenter.query.all()
+
+    data = [{
+        "CC": cc.code,
+        "NOMBRE-CC": cc.name,
+        "Sucursal": cc.branch,
+        "Faena": cc.site,
+        "Gerencia": cc.management,
+        "Gerente": cc.manager,
+        "Correo-Gerente": cc.manager_email,
+        "Administrador": cc.admin,
+        "Correo-Administrador": cc.admin_email,
+        "Celular-Administrador": cc.admin_phone,
+    } for cc in cost_centers]
+
+    df = pd.DataFrame(data)
+
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+        df.to_excel(writer, index=False, sheet_name='CostCenters')
+
+    output.seek(0)
+
+    return send_file(output,
+                     as_attachment=True,
+                     download_name="cost_centers.xlsx",
+                     mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 

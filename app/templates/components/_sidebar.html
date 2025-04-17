@@ -9,40 +9,40 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('home.index') }}">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
+                        <i class="fas fa-home"></i>
+                        <p>Menu Principal</p>
                     </a>
                 </li>
                 <li class="nav-header">ADMINISTRACIÓN</li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('users.list_users') }}">
-                        <i class="fas fa-users"></i>
-                        <p>Usuarios</p>
+                        <i class="fas fa-user-circle"></i>
+                        <p>Personal TI</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('customer.list_customers') }}">
                         <i class="fas fa-users"></i>
-                        <p>Clientes</p>
+                        <p>Trabajador Guiñez</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('cost_center.list_cost_center') }}">
-                        <i class="fas fa-tag"></i>
+                        <i class="fas fa-briefcase"></i>
                         <p>Centro De Costo</p>
                     </a>
                 </li>
                 <!-- Agrega más ítems aquí -->
                 <li class="nav-header">TICKETS</li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('ticket.list') }}">
-                        <i class="fas fa-users"></i>
+                    <a class="nav-link" href="{{ url_for('ticket.dashboard') }}">
+                        <i class="fas fa-line-chart"></i>
                         <p>DASHBOARD</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('ticket.create') }}">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-laptop"></i>
                         <p>CREAR TICKET</p>
                     </a>
                 </li>
@@ -60,19 +60,19 @@
                 </li>
                 <li class="nav-header">ASIGNACION DE EQUIPOS</li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('users.list_users') }}">
+                    <a class="nav-link" href="{{ url_for('assignment.list') }}">
                         <i class="fas fa-users"></i>
                         <p>DASHBOARD</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('customer.list_customers') }}">
+                    <a class="nav-link" href="{{ url_for('assignment.create') }}">
                         <i class="fas fa-users"></i>
                         <p>MIS ASIGNACIONES</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('cost_center.list_cost_center') }}">
+                    <a class="nav-link" href="{{ url_for('assignment.list') }}">
                         <i class="fas fa-tag"></i>
                         <p>TODOS LAS ASIGNACIONES</p>
                     </a>

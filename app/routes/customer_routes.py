@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import Blueprint, render_template, redirect, url_for, flash, request, send_file
 from flask_login import login_required
 from app import db
 from app.models import Customer
@@ -89,3 +89,28 @@ def upload_customers():
             flash(f'Error al procesar el archivo: {e}', 'danger')
     return redirect(url_for('customer.list_customers'))
 
+
+@bp.route('/customers/download', methods=['GET'])
+def download_customers_excel():
+    customers = Customer.query.all()
+
+    data = [{
+        "RUT": c.id_number,
+        "Nombre": f"{c.name} {c.lastname}",
+        "CC": c.cost_center,
+        "Cargo": c.job_title,
+        "Email": c.email
+    } for c in customers]
+
+    df = pd.DataFrame(data)
+
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+        df.to_excel(writer, index=False, sheet_name='Trabajadores')
+
+    output.seek(0)
+
+    return send_file(output,
+                     as_attachment=True,
+                     download_name="trabajadores.xlsx",
+                     mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")

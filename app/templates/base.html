@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://intranet.guinezapp.cl/vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
 
     <!-- Estilos personalizados (opcional) -->
-    
+    {% block style %}{% endblock %}
 
     {% block head %}{% endblock %}
 </head>
@@ -26,9 +26,10 @@
 <body class="login-page">
 {% endif %}
     {% if current_user.is_authenticated %}
+    <div class="d-flex">
     {% include 'components/_navbar.html' %}
     {% include 'components/_sidebar.html' %}
-
+    </div>
     {% endif %}
 
         <!-- Flash messages -->

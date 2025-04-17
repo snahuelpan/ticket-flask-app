@@ -60,7 +60,8 @@ def create_app(config_class=Config):
             user_routes,
             knowledge_routes,
             customer_routes,
-            cost_center_routes
+            cost_center_routes,
+            assignment_routes
         )
 
         app.register_blueprint(auth_routes.bp)
@@ -71,6 +72,7 @@ def create_app(config_class=Config):
         app.register_blueprint(knowledge_routes.bp)
         app.register_blueprint(customer_routes.bp)
         app.register_blueprint(cost_center_routes.bp)
+        app.register_blueprint(assignment_routes.bp)
     
     return app
 

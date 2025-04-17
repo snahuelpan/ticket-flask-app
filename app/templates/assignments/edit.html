@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Edit Assignment #{{ assignment.id }}</h1>
+    <form method="POST">
+        <label for="asset_id">Asset:</label>
+        <select name="asset_id" required>
+            {% for asset in assets %}
+                <option value="{{ asset.id }}" {% if asset.id == assignment.asset.id %}selected{% endif %}>
+                    {{ asset.name }}
+                </option>
+            {% endfor %}
+        </select><br>
+
+        <label for="user_id">User:</label>
+        <select name="user_id" required>
+            {% for user in users %}
+                <option value="{{ user.id }}" {% if user.id == assignment.user.id %}selected{% endif %}>
+                    {{ user.name }}
+                </option>
+            {% endfor %}
+        </select><br>
+
+        <label for="notes">Notes:</label>
+        <textarea name="notes">{{ assignment.notes }}</textarea><br>
+
+        <button type="submit">Update Assignment</button>
+    </form>
+    <a href="{{ url_for('assignment.list') }}">Back to List</a>
+{% endblock %}

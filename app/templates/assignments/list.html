@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Assignments</h1>
+    <a href="{{ url_for('assignment.create') }}">Create New Assignment</a>
+    <ul>
+        {% for assignment in assignments %}
+            <li>
+                <a href="{{ url_for('assignment.assignment_detail', id=assignment.id) }}">
+                    Assignment {{ assignment.id }} - {{ assignment.asset.name }} assigned to {{ assignment.user.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

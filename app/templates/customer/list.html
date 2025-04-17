@@ -2,9 +2,13 @@
 
 {% block content %}
     <div class="container">
-        <h2>Lista de Clientes</h2>
-        <a href="{{ url_for('customer.create_customer') }}" class="btn btn-primary mb-3">Crear Nuevo Cliente</a>
-        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#uploadModal">Cargar Lista de Usuarios</button>
+        <h2>Lista de Trabajadores Guiñez Activos</h2>
+        <a href="{{ url_for('customer.create_customer') }}" class="btn btn-primary mb-3">Crear Nuevo Trabajador</a>
+        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#uploadModal">Cargar Archivo Excel</button>
+        <a href="{{ url_for('customer.download_customers_excel') }}" class="btn btn-outline-primary mb-3">Descargar Excel</a>
+        <a href="{{ url_for('static', filename='files/Formato-Carga-Usuarios.xlsx') }}" class="btn btn-outline-secondary mb-3">
+            Descargar Plantilla Excel
+        </a>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -40,7 +44,7 @@
       <form method="POST" action="{{ url_for('customer.upload_customers') }}" enctype="multipart/form-data">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="uploadModalLabel">Subir Archivo Excel de Clientes</h5>
+            <h5 class="modal-title" id="uploadModalLabel">Subir Archivo Excel</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div class="modal-body">

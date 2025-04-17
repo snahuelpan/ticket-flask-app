@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
+{% block style %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<style>
+  /* Estilos adicionales si es necesario */
+/* Make Select2 boxes match Bootstrap3 as well as Bootstrap4 heights: */
+.select2-selection__rendered {
+line-height: 35px !important;
+}
 
+.select2-selection {
+height: 45px !important;
+}
+</style>
+{% endblock %}
 {% block content %}
   <div class="container">
     <h2>Crear Nuevo Ticket</h2>
     <form method="POST" action="{{ url_for('ticket.create') }}">
       {{ form.hidden_tag() }}
       <div class="form-group">
-        <label for="title">Título</label>
-        {{ form.title(class="form-control", id="title", placeholder="Ingrese el título del ticket") }}
+        <label for="title">N° TICKET</label>
+        {{ form.title(class="form-control", id="title", disabled="disabled") }}
+      </div>
+      <div class="form-group">
+        <label for="customer">Trabajador</label>
+        {{ form.customer(class="form-control", id="customer") }}
       </div>
       <div class="form-group">
         <label for="description">Descripción</label>
@@ -28,4 +45,20 @@
       <button type="submit" class="btn btn-primary">Crear Ticket</button>
     </form>
   </div>
+
 {% endblock %}
+
+{% block scripts %}
+<!-- Inicializar Select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+      $('#customer').select2({
+          placeholder: "Selecciona una categoría",
+          allowClear: true,
+          
+      });
+  });
+</script>
+
+ {% endblock %}
