@@ -20,8 +20,8 @@ else:
 def initdb_command():
     """Inicializa la base de datos."""
     print(db)
-    db.drop_all()
-    db.create_all()
+    #db.drop_all()
+    #db.create_all()
     # Crear un usuario de prueba
     test_user = User(
         email='soporteti@local.com',
@@ -39,4 +39,5 @@ def initdb_command():
     print(f'Usuario de prueba creado: {test_user.email}')
 
 if __name__ == '__main__':
+    #initdb_command()
     app.run(port=3000)
